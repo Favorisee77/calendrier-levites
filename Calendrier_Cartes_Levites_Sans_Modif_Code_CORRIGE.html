@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendrier 2026 — Cartes Mobile</title>
+<style>
+:root{
+  --bg:#f7f7f9; --card:#fff; --text:#111827; --muted:#6b7280; --border:rgba(17,24,39,.12);
+  --shadow:0 6px 18px rgba(17,24,39,.08); --radius:18px;
+  --g1:#355e3b; --g2:#8aa88b; --g3:#c8b27a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";color:var(--text);background:var(--bg)}
+header{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(180deg, rgba(247,247,249,.98), rgba(247,247,249,.90));
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.wrap{max-width:980px;margin:0 auto;padding:14px 14px 12px}
+.row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+@media(max-width:720px){.row{align-items:center;flex-wrap:wrap}}
+.title{
+  font-size:18px;font-weight:950;
+  background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.subtitle{margin-top:4px;font-size:12px;color:var(--muted);font-weight:800}
+.btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{
+  border:1px solid var(--border); background:#fff; border-radius:14px;
+  padding:9px 11px; font-weight:900; font-size:13px; cursor:pointer;
+  box-shadow:0 1px 0 rgba(17,24,39,.03);
+}
+.controls{margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:720px){.controls{grid-template-columns:1fr}}
+.control{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px;box-shadow:0 1px 0 rgba(17,24,39,.03)}
+label{display:block;font-size:12px;font-weight:900;color:var(--muted);margin-bottom:6px}
+input[type="search"],select,input[type="text"]{
+  width:100%;border:1px solid var(--border);border-radius:12px;padding:10px 10px;background:#fff;
+  outline:none;font-weight:800;font-size:14px;
+}
+input:focus,select:focus{box-shadow:0 0 0 3px rgba(200,178,122,.25);border-color:rgba(200,178,122,.45)}
+
+.links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+.links a{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:950;
+  border:1px solid var(--border);background:#fff;border-radius:999px;padding:8px 10px;font-size:13px;
+}
+.links .priere{border-color:rgba(53,94,59,.25);background:rgba(53,94,59,.06);color:#1f3b26}
+.links .abs{border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.08);color:#7f1d1d}
+
+.notice{
+  margin-top:10px;border:1px dashed rgba(17,24,39,.25);background:rgba(255,255,255,.8);
+  border-radius:14px;padding:10px;font-size:12px;color:var(--muted);font-weight:800
+}
+
+.sectionTitle{margin:14px 0 8px;font-weight:950;font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.bar{height:6px;background:rgba(148,163,184,.22)}
+.card-inner{padding:12px}
+.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.when{font-weight:950;font-size:14px}
+.tag{
+  font-size:12px;font-weight:950;padding:7px 10px;border-radius:999px;color:#111827;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;border:1px solid rgba(17,24,39,.12);background:rgba(17,24,39,.04)
+}
+.meta{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:900;padding:6px 10px;border-radius:999px;border:1px solid rgba(17,24,39,.12);background:rgba(17,24,39,.04)}
+.kv{margin-top:10px;display:grid;grid-template-columns:1fr;gap:8px}
+.kv .line{display:flex;gap:8px;align-items:flex-start}
+.kv .k{min-width:92px;color:var(--muted);font-weight:900;font-size:12px}
+.kv .v{font-weight:850;font-size:13px;white-space:pre-wrap}
+
+.uniform{
+  margin-top:10px;border:1px solid rgba(17,24,39,.10);border-radius:14px;overflow:hidden;background:rgba(17,24,39,.02)
+}
+.uniformHead{
+  padding:10px 12px;font-weight:950;background:rgba(17,24,39,.03);display:flex;align-items:center;justify-content:space-between;gap:10px
+}
+.swatch{width:18px;height:18px;border-radius:6px;border:1px solid rgba(17,24,39,.12);flex:0 0 auto}
+.uniformBody{padding:10px 12px}
+.uniformBody img{display:block;width:100%;height:auto;max-height:260px;object-fit:cover;border-radius:12px;border:1px solid rgba(17,24,39,.10);background:#fff}
+.uniformBody .uText{margin-top:8px;font-weight:900}
+
+.toast{
+  position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
+  background:rgba(17,24,39,.94);color:#fff;padding:10px 12px;border-radius:14px;font-size:13px;display:none;z-index:80;max-width:92vw;
+}
+.small{font-size:12px;color:var(--muted);font-weight:800}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div class="title">Calendrier 2026 — Cartes Mobile</div>
+        <div class="subtitle">Tu modifies le Google Sheet • Les cartes se mettent à jour • <span id="buildStamp"></span></div>
+      </div>
+      <div class="btns">
+        <button class="btn" id="btnAll">🗂️ Tout</button>
+        <button class="btn" id="btnNext7">⏭️ 7 prochains jours</button>
+        <button class="btn" id="btnWeekend">🌙 Week-end</button>
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="priere" id="linkPriere" href="https://forms.gle/h8is33rvZL2Mw5829" target="_blank" rel="noopener">🙏 Sujet de prière</a>
+      <a class="abs" id="linkAbs" href="https://form.jotform.com/260151033471040" target="_blank" rel="noopener">🚨 Signaler une absence</a>
+    </div>
+
+    <div class="controls">
+      <div class="control">
+        <label for="q">Rechercher</label>
+        <input id="q" type="search" placeholder="Ex : Jessie, guitare, Bloom, doré…">
+      </div>
+      <div class="control">
+        <label for="jour">Jour</label>
+        <select id="jour">
+          <option value="">Tous</option>
+          <option>Lundi</option><option>Mardi</option><option>Mercredi</option><option>Jeudi</option>
+          <option>Vendredi</option><option>Samedi</option><option>Dimanche</option>
+        </select>
+      </div>
+      <div class="control">
+        <label for="type">Type</label>
+        <select id="type">
+          <option value="">Tous</option>
+          <option>Culte</option>
+          <option>Prière</option>
+          <option>Répétition</option>
+          <option>Partage et prière Zoom</option>
+          <option>Jeûne et prière</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="control" style="grid-column: 1 / -1;">
+        <label for="csvUrl">Lien CSV publié (Google Sheet)</label>
+        <input id="csvUrl" type="text" placeholder="Colle ici le lien CSV publié (docs.google.com/...export?format=csv&gid=0)">
+        <div class="notice">
+          ✅ Tu peux coller une image directement dans <b>photo_url</b> (lien web .jpg/.png) — pas besoin de télécharger dans le site.<br>
+          ℹ️ Le lien CSV est mémorisé sur ton appareil (local) après “Enregistrer”.
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <button class="btn" id="btnSave">💾 Enregistrer le lien</button>
+          <button class="btn" id="btnReload">🔄 Recharger</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="sectionTitle" id="countLine">Colle ton lien CSV puis clique “Enregistrer le lien”.</div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PRIERE_URL = "https://forms.gle/h8is33rvZL2Mw5829";
+const ABSENCE_URL = "https://form.jotform.com/260151033471040";
+document.getElementById("linkPriere").href = PRIERE_URL;
+document.getElementById("linkAbs").href = ABSENCE_URL;
+
+const TODAY = new Date();
+const TODAY_ISO = new Date(Date.UTC(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate())).toISOString().slice(0,10);
+const BUILD_STAMP = new Date().toLocaleString("fr-CA");
+document.getElementById("buildStamp").textContent = "Généré : " + BUILD_STAMP;
+
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg; t.style.display="block";
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer=setTimeout(()=>t.style.display="none",2400);
+}
+function normalize(s){ return (s??"").toString().trim(); }
+function lower(s){ return normalize(s).toLowerCase(); }
+function escapeHtml(s){
+  return normalize(s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+
+function parseCSV(text){
+  const rows=[];
+  let row=[], cur="", inQ=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i], nx=text[i+1];
+    if(ch==='"'){
+      if(inQ && nx==='"'){ cur+='"'; i++; }
+      else inQ=!inQ;
+    } else if(ch===',' && !inQ){
+      row.push(cur); cur="";
+    } else if((ch==='
+' || ch==='
+') && !inQ){
+      if(cur!=="" || row.length){ row.push(cur); rows.push(row); }
+      row=[]; cur="";
+      if(ch==='
+' && nx==='
+') i++;
+    } else {
+      cur+=ch;
+    }
+  }
+  if(cur!=="" || row.length){ row.push(cur); rows.push(row); }
+  return rows;
+}
+
+function parseDateISO(s){
+  const t = normalize(s);
+  if(!t) return null;
+  if(/^\d{4}-\d{2}-\d{2}$/.test(t)) return t;
+  const m = t.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(m){
+    const dd=String(m[1]).padStart(2,'0');
+    const mm=String(m[2]).padStart(2,'0');
+    return `${m[3]}-${mm}-${dd}`;
+  }
+  return null;
+}
+function isoAddDays(iso,days){
+  const d=new Date(iso+"T00:00:00");
+  d.setDate(d.getDate()+days);
+  return d.toISOString().slice(0,10);
+}
+function weekStartISO(iso){
+  const d=new Date(iso+"T00:00:00");
+  const dow=d.getDay();
+  const diff=(dow===0)?-6:(1-dow);
+  d.setDate(d.getDate()+diff);
+  return d.toISOString().slice(0,10);
+}
+function withinRange(iso, start, end){
+  if(!iso || !start || !end) return true;
+  return iso>=start && iso<=end;
+}
+
+let DATA=[];
+let QUICK={mode:"all", start:null, end:null};
+
+async function load(){
+  const csvUrl = normalize(document.getElementById("csvUrl").value);
+  if(!csvUrl){
+    document.getElementById("countLine").textContent = "Colle ton lien CSV publié puis clique “Enregistrer le lien”.";
+    return;
+  }
+  document.getElementById("countLine").textContent = "Chargement…";
+  const res = await fetch(csvUrl, {cache:"no-store"});
+  const txt = await res.text();
+  const rows = parseCSV(txt);
+
+  if(rows.length<2){
+    document.getElementById("countLine").textContent = "⚠️ Le CSV est vide ou non publié.";
+    return;
+  }
+
+  const headers = rows[0].map(h=>lower(h));
+  const idx = (name)=> headers.indexOf(lower(name));
+  const get = (r, name)=>{
+    const i=idx(name);
+    return i>=0 ? normalize(r[i]) : "";
+  };
+
+  DATA = rows.slice(1).filter(r=>r.join("").trim().length>0).map(r=>{
+    const date = get(r,"date");
+    const iso = parseDateISO(date);
+    return {
+      date, iso,
+      jour: get(r,"jour"),
+      type: get(r,"type") || "Autre",
+      culte: get(r,"culte"),
+      lead: get(r,"lead"),
+      chantres: get(r,"chantres"),
+      musiciens: get(r,"musiciens"),
+      dirigeant: get(r,"dirigeant"),
+      uniforme: get(r,"uniforme"),
+      couleur_hex: get(r,"couleur_hex"),
+      photo_url: get(r,"photo_url"),
+      notes: get(r,"notes")
+    };
+  });
+
+  DATA.sort((a,b)=>{
+    if(a.iso && b.iso) return a.iso.localeCompare(b.iso);
+    return a.date.localeCompare(b.date);
+  });
+
+  QUICK={mode:"all",start:null,end:null};
+  build();
+}
+
+function build(){
+  const q = lower(document.getElementById("q").value);
+  const jour = lower(document.getElementById("jour").value);
+  const type = lower(document.getElementById("type").value);
+  const start=QUICK.start, end=QUICK.end;
+
+  const grid=document.getElementById("grid");
+  grid.innerHTML="";
+
+  const filtered = DATA.filter(r=>{
+    const hay = lower([r.date,r.jour,r.type,r.culte,r.lead,r.chantres,r.musiciens,r.dirigeant,r.uniforme,r.notes].join(" • "));
+    if(q && !hay.includes(q)) return false;
+    if(jour && lower(r.jour)!==jour) return false;
+    if(type && lower(r.type)!==type) return false;
+    if(start && end && r.iso && !withinRange(r.iso,start,end)) return false;
+    return true;
+  });
+
+  document.getElementById("countLine").textContent = `Résultats : ${filtered.length} événement(s)`;
+
+  for(const r of filtered){
+    const when = [r.date, r.jour].filter(Boolean).join(" • ");
+    const swatchColor = r.couleur_hex ? r.couleur_hex : "rgba(17,24,39,.10)";
+    const swatch = `<span class="swatch" style="background:${escapeHtml(swatchColor)}"></span>`;
+    const photo = r.photo_url ? `<img src="${escapeHtml(r.photo_url)}" alt="Uniforme">` : `<div class="small">Aucune photo</div>`;
+
+    const lines=[];
+    if(r.culte) lines.push(["⏰", "Culte", r.culte]);
+    if(r.lead) lines.push(["👤", "Lead", r.lead]);
+    if(r.chantres) lines.push(["🎤", "Chantres", r.chantres]);
+    if(r.musiciens) lines.push(["🎹", "Musiciens", r.musiciens]);
+    if(r.dirigeant) lines.push(["🙏", "Dirigeant", r.dirigeant]);
+
+    const kv = lines.map(([ic,k,v])=>`
+      <div class="line">
+        <div class="k">${ic} ${escapeHtml(k)}</div>
+        <div class="v">${escapeHtml(v)}</div>
+      </div>
+    `).join("");
+
+    const details = r.notes ? `<div class="kv"><div class="line"><div class="k">📝 Notes</div><div class="v">${escapeHtml(r.notes)}</div></div></div>` : "";
+
+    const card=document.createElement("div");
+    card.className="card";
+    card.innerHTML = `
+      <div class="bar" style="background:${escapeHtml(swatchColor)}"></div>
+      <div class="card-inner">
+        <div class="topline">
+          <div class="when">🗓️ ${escapeHtml(when)}</div>
+          <div class="tag">🏷️ ${escapeHtml(r.type)}</div>
+        </div>
+
+        <div class="meta">
+          ${r.iso ? `<span class="pill">📅 ${escapeHtml(r.iso)}</span>` : ``}
+          ${r.type ? `<span class="pill">🕊️ ${escapeHtml(r.type)}</span>` : ``}
+        </div>
+
+        <div class="kv">${kv}</div>
+
+        <div class="uniform">
+          <div class="uniformHead">
+            <div style="display:flex;align-items:center;gap:10px">${swatch}<div>👕 Uniforme</div></div>
+            <div class="small">${escapeHtml(r.uniforme || "")}</div>
+          </div>
+          <div class="uniformBody">
+            ${photo}
+            ${r.uniforme ? `<div class="uText">${escapeHtml(r.uniforme)}</div>` : ``}
+          </div>
+        </div>
+
+        ${details}
+
+        <div class="links" style="margin-top:12px">
+          <a class="abs" href="${ABSENCE_URL}" target="_blank" rel="noopener">🚨 Signaler une absence</a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  }
+}
+
+function goAll(){ QUICK={mode:"all",start:null,end:null}; build(); toast("Affichage : Tout ✅"); }
+function goNext7(){ QUICK={mode:"next7",start:TODAY_ISO,end:isoAddDays(TODAY_ISO,6)}; build(); toast("Affichage : 7 prochains jours ✅"); }
+function goWeekend(){
+  const s=weekStartISO(TODAY_ISO);
+  QUICK={mode:"weekend",start:isoAddDays(s,4),end:isoAddDays(s,6)};
+  build(); toast("Affichage : Week-end ✅");
+}
+
+document.getElementById("btnAll").addEventListener("click",goAll);
+document.getElementById("btnNext7").addEventListener("click",goNext7);
+document.getElementById("btnWeekend").addEventListener("click",goWeekend);
+
+["q","jour","type"].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener("input",()=>{ QUICK={mode:"all",start:null,end:null}; build(); });
+  el.addEventListener("change",()=>{ QUICK={mode:"all",start:null,end:null}; build(); });
+});
+
+document.getElementById("btnSave").addEventListener("click",()=>{
+  const v = normalize(document.getElementById("csvUrl").value);
+  if(!v){ toast("Colle d’abord le lien CSV."); return; }
+  localStorage.setItem("LEVITES_CSV_URL", v);
+  toast("Lien enregistré ✅");
+  load();
+});
+
+document.getElementById("btnReload").addEventListener("click",()=>{
+  load();
+});
+
+// Auto-remplir si déjà enregistré
+const saved = https://docs.google.com/spreadsheets/d/e/2PACX-1vRLHBqWnrdYsSHRlhkHHG-JjGOm8yjZhQ18Nvt_QkC2CRwaEfa4fhHuW3eXCYdaMKwlwsdUYXgbg9Qy/pub?gid=5340013&single=true&output=csv || "";
+if(saved){
+  document.getElementById("csvUrl").value = saved;
+  load();
+}
+</script>
+</body>
+</html>
